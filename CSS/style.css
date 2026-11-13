@@ -1,0 +1,349 @@
+/* ========================================== */
+/* DESIGN SYSTEM: Variáveis de cores e fontes */
+/* ========================================== */
+:root{
+  /* Paleta de cores */
+  --color-primary-dark: #003B8E;
+  --color-primary-main: #0056D2;
+  --color-primary-light: #4D8BFF;
+  --color-secondary-main: #FF7A00;
+  --color-secondary-dark: #CC6200;
+  --color-text-main: #333333;
+  --color-text-muted: #666666;
+  --color-bg-main: #FFFFFF;
+  --color-bg-alt: #F4F6F8;
+
+/* Escala Tipográfica 5 patamarees */
+--font-size-h1: 2.5rem;
+--font-size-h2: 2.0rem;
+--font-size-h3: 1.5rem;
+--font-size-body: 1rem;
+--font-size-small: 0.875rem;
+
+/* Espaçamento Modulares */
+--spacing-xs: 0.5rem;
+--spacing-sm: 1rem;
+--spacing-md: 1.5rem;
+--spacing-lg: 2rem;
+--spacing-xl: 4rem;
+}
+
+/* =================================== */
+/* RESET E ESTILOS GERAIS              */
+/* =================================== */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--color-bg-main);
+  color: var(--color-text-main);
+}
+
+h1 {font-size: var(--font-size-h1); color: var(--color-primary-dark);}
+h2 {font-size: var(--font-size-h2); color: var(--color-primary-main); margin-bottom: var(--spacing-sm); }
+h3 {font-size: var(--font-size-h3); }
+p {font-size: var(--font-size-body); margin-bottom: var(--spacing-md); }
+small {font-size: var(--font-size-small); color: var(--color-text-muted); }
+
+/* ================================== */
+/* HEADER E NAVEGAÇÃO                 */
+/* ===================================*/
+
+header {
+  background-color: var(--color-primary-dark);
+  color: var(--color-bg-main);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  color: var(--color-bg-main);
+  font-size: var(--font-size-h2);
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: var(--spacing-lg);
+}
+
+nav a {
+  color: var(--color-bg-main);
+  text-decoration: none;
+  font-weight: bold;
+}
+/* submmenu */
+nav ul li ul {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  background-color: var(--color-primary-main);
+  transition: all 0.3s ease-in-out;
+}
+
+nav ul li:hover > ul {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Ocultar input do menu */
+#menu-toggle, .menu-icon {
+  display: none;
+}
+
+/* ==================================== */
+/* GRID LAYOUT E SECÇÕES                */
+/* ==================================== */
+section {
+  padding: var(--spacing-xl) var(--spacing-lg);
+  max-width: 1200px;
+  margin: 0 auto;
+  /* Grid de 12 colunas */
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--spacing-lg); 
+}
+
+/* Os conteúdos ocupam todas as 12 colunas por padrão */
+section > * {
+  grid-column: span 12;
+}
+
+/* ======================================= */
+/* Formulários e butões                    */
+/* ======================================= */
+
+form {
+  background-color: var(--color-bg-alt);
+  padding: var(--spacing-lg);
+  border-radius: 8px;
+}
+
+fieldset {
+  border: 1px solid var(--color-primary-light);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+input, select {
+  padding: var(--spacing-xs);
+  font-size: var(--font-size-body);
+  border: 1px solid var(--color-text-muted);
+  border-radius: 4px;
+}
+button[type="submit"] {
+  background-color: var(--color-secondary-main);
+  color: white;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-size: var(--font-size-h3);
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: var(--color-secondary-dark);
+}
+
+/* ============================== */
+/* MEDIA QUERIES                  */
+/* ============================== */
+
+/* Tablet e Mobile */
+@media (max-width: 768px) {
+  
+  /* Menu Mobile */
+  .menu-icon {
+    display: block;
+    cursor: pointer;
+    font-size: 2rem;
+  }
+
+nav {
+  display: none; /* Esconde o menu normal */
+  width: 100%;
+  position: absolute;
+  top: 70px;
+  left: 0px;
+  background-color: var(--color-primary-dark); 
+}
+
+nav ul {
+  flex-direction: column;
+  padding: var(--spacing-md);
+  gap: var(--spacing-sm);
+}
+
+#menu-toggle:checked ~ nav {
+  display: block; /* Mostra o menu quando o input invisivel é clicado */
+}
+
+/* Grid Layout: No telemóvel empilha tudo em 12 colunas */
+section > * {
+  grid-column: span 12; 
+  }
+
+} /* Desktop */
+@media (min-width: 1024px) {
+  /* Distribui melhor o espaço nos ecrãs grandes usando o Grid */
+  .conteudo-metade {
+    grid-column: span 6; /*ocupa metade do ecrã */
+  }
+}  
+  </style>
+
+  
+</head>
+<body>
+  <!-- ========================================== -->
+<!-- ARQUIVO: index.html (Página Inicial)       -->
+<!-- ========================================== -->
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dia das Crianças Solidário</title>
+  
+  <!-- Ligação para o seu ficheiro de estilos -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+        <h1>Dia das Crianças Solidário</h1>
+        
+        <!-- Botão do Menu Hambúrguer para Telemóveis -->
+        <input type="checkbox" id="menu-toggle">
+        <label for="menu-toggle" class="menu-icon">☰</label>
+        
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="projetos.html">Projetos</a></li>
+                <li><a href="cadastro.html">Doar</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="conteudo-metade">
+        <h2>Sobre a nossa ONG</h2>
+        <p>Conheça a nossa missão e o nosso projeto para transformar o dia das crianças mais feliz para as crianças da comunidade.</p>
+        <img src="criançassorrindo.jpg" width="200" alt="Dia das crianças, na distribuição de presentes.">
+    </section>
+
+    <section class="conteudo-metade">
+        <h2>Dia das Crianças Solidário</h2>
+        <p>Há 13 anos promovemos um dia especial repleto de alegria, brincadeiras e solidariedade para as crianças da nossa região, permitindo um dia cheio de animação.</p>
+        <img src="diadascriancas.jpg" width="300" alt="Crianças sorrindo e a participar das atividades recreativas do projeto">
+    </section>
+
+    <section>
+        <h2>Contato</h2>
+        <p>E-mail: jenniferpinh@gmail.com | Telefone: (88) 98879-9401</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Nossa ONG. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
+
+
+<!-- ========================================== -->
+<!-- ARQUIVO: cadastro.html (Formulário)        -->
+<!-- ========================================== -->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Cadastro - Dia das Crianças Solidário</title>
+     
+     <!-- Ligação para o seu ficheiro de estilos -->
+     <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+      <h1>Junte-se a nós e faça a sua Doação!</h1>
+      
+      <!-- Botão do Menu Hambúrguer para Telemóveis -->
+      <input type="checkbox" id="menu-toggle">
+      <label for="menu-toggle" class="menu-icon">☰</label>
+      
+      <nav>
+        <ul>
+          <li><a href="index.html">Voltar para o Início</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section>
+      <h2>Formulário para Arrecadações</h2>
+      <p>Ajude-nos a fazer o Dia das Crianças mais feliz! Preencha os seus dados e contribua com a nossa tradição.</p>
+
+      <form action="#" method="post">
+        
+        <fieldset>
+          <legend>Dados do Doador</legend>
+
+          <label for="nome">Nome Completo:</label>
+          <input type="text" id="nome" name="nome" required><br><br>
+
+          <label for="email">E-mail:</label>
+          <input type="email" id="email" name="email" required><br><br>
+
+          <label for="nascimento">Data de Nascimento:</label>
+          <input type="date" id="nascimento" name="nascimento" required><br><br>
+
+          <label for="cpf">CPF:</label>
+          <input type="text" id="cpf" name="cpf" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" required title="Digite no formato 000.000.000-00"><br><br>
+       </fieldset>
+
+       <fieldset>
+          <legend>Dados de Contato e Endereço do Doador</legend>
+          <p><em><strong>Atenção:</strong> A entrega física de doações deve ser feita no Endereço na Cidade de Milhã - Ceará (Baixa Verde - Casa de Zé Valdecir). Preencha o seu endereço abaixo apenas para nosso registro de doadores.</em></p>
+
+          <label for="telefone">Telefone (DDD) 00000-0000:</label>
+          <input type="text" id="telefone" name="telefone" pattern="\(\d{2}\)\s\d{4,5}-\d{4}" required title="Digite no formato (00) 00000-0000"><br><br>
+
+          <label for="cep">CEP (00000-000):</label>
+          <input type="text" id="cep" name="cep" pattern="\d{5}-\d{3}" required title="Digite no formato 00000-000"><br><br>
+
+          <label for="cidade">Cidade:</label>
+          <input type="text" id="cidade" name="cidade" required><br><br>
+      </fieldset>
+
+      <fieldset>
+        <legend>Detalhes da Doação</legend>
+
+        <label for="tipo_doacao">O que gostaria de doar?</label>
+        <select id="tipo_doacao" name="tipo_doacao" required>
+          <option value="">Selecione uma opção...</option>
+          <option value="brinquedos">Brinquedos (Novos ou usados)</option>
+          <option value="alimentos">Alimentos NÃO Perecíveis</option>
+          <option value="dinheiro">Dinheiro/Pix</option>
+        </select><br><br>
+      </fieldset>
+
+      <button type="submit">Enviar Intenção de Doação</button>
+
+    </form>
+  </section>
+</body>
+</html>
+
+  <script>
+    
+  </script>
+</body>
+</html>
